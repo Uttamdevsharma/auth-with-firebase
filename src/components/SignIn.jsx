@@ -6,9 +6,12 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from 'react';
 import { useForm } from "react-hook-form"
 import { Link } from 'react-router-dom';
-
+import { useLocation } from "react-router-dom";
 
 export const SingIn = () => {
+
+    const location = useLocation();
+     const fromSignUp = location.state?.fromSignUp;
 
     const navigate = useNavigate(); 
 
@@ -67,6 +70,13 @@ const firebaseConfig = {
 
   return (
     <>
+
+    {fromSignUp && (
+  <div style={{ color: 'green', marginBottom: '10px' }}>
+    ✅ Successfully signed up! Please login.
+  </div>
+)}
+
      <form style={{
         border: '2px solid white'
       }} onSubmit={handleSubmit(onSubmit)}>

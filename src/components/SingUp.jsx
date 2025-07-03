@@ -4,12 +4,15 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import React,{ useState } from 'react';
 import { useForm } from "react-hook-form"
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 
 const SignUp = () => {
-
+    
+      const navigate = useNavigate();
         const [user,setUser ] = useState({})
         const [firebaseError , setFirebaseError] = useState("")
+        
     
     
       const {
@@ -46,6 +49,11 @@ const SignUp = () => {
         // Signed up 
         const user = userCredential.user;
         setUser(user)
+        navigate('/login' , {
+  state: { fromSignUp: true }
+});
+        
+
         // ...
       })
       .catch((error) => {
@@ -56,12 +64,11 @@ const SignUp = () => {
       }
     
     
-    
-
-
 
   return (
     <>
+
+    
 
        <form style={{
             border: '2px solid white'

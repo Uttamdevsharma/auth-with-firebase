@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getAuth, signOut } from 'firebase/auth'
+import {  signOut } from 'firebase/auth'
 import auth from '../firebase' // make sure this file exports auth
 
 const BlogHome = () => {
@@ -23,7 +23,7 @@ const BlogHome = () => {
       </nav>
 
       {/* Hero Section */}
-      <section style={{ padding: '40px', textAlign: 'center', backgroundColor: '#f8f8f8' }}>
+      <section style={{ padding: '40px', textAlign: 'center', backgroundColor: 'green' }}>
         <h1>Welcome to Firebase Blog Zone</h1>
         <p>Build and manage apps with Firebase Auth</p>
       </section>
@@ -42,7 +42,7 @@ const BlogHome = () => {
       </section>
 
       {/* Blogs */}
-      <section style={{ padding: '20px', backgroundColor: '#f0f0f0' }}>
+      <section style={{ padding: '20px', backgroundColor: 'gray' }}>
         <h2 style={{ textAlign: 'center' }}>📝 Recent Blogs</h2>
         <div style={{ maxWidth: '800px', margin: 'auto' }}>
           <div style={{ border: '1px solid gray', padding: '15px', marginBottom: '10px' }}>
