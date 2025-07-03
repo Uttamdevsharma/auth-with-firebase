@@ -4,6 +4,7 @@ import './index.css'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import BlogHome from './pages/BlogHome'
+import DashBoard from './pages/DashBoard'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
      <Route path='/login' element={<Login/>} />
      <Route path='/signup' element={<Home/>} />
      <Route path='/landing' element={<BlogHome/>} />
+     <Route path='/newpage' element={<DashBoard/>} />
 
     </Routes>
     </>

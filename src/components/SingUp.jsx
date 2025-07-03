@@ -5,6 +5,7 @@ import React,{ useState } from 'react';
 import { useForm } from "react-hook-form"
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+// import '../Blog.css'
 
 
 const SignUp = () => {
@@ -74,15 +75,11 @@ const SignUp = () => {
             border: '2px solid white'
           }} onSubmit={handleSubmit(onSubmit)}>
     
-           <h3>SignUp with email and password {user.email}</h3>
+           <h3  >SignUp with email and password {user.email}</h3>
     
     
           {/* include validation with required or other standard HTML validation rules */}
-          <input type='email' style={{
-            padding: '10px',
-            width: '250px',
-            margin: '10px'
-          }    } {...register("email", { required: true })} placeholder='Email' />
+          <input type='email' className="p-2.5 border border-white-500 w-[250px] m-2.5" {...register("email", { required: true })} placeholder='Email' />
           <br/>
           {errors.email && <span  style={{
             color: 'red',
@@ -92,7 +89,7 @@ const SignUp = () => {
            <br/>
     
     
-          <input  type = "password" style={{
+          <input className="p-2.5 border border-white-500 w-[250px] m-2.5"  type = "password" style={{
             padding: '10px',
             width: '250px',
             margin: '10px'

@@ -1,7 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import {  signOut } from 'firebase/auth'
+import { signOut } from 'firebase/auth'
 import auth from '../firebase' // make sure this file exports auth
+import '../Blog.css'
 
 const BlogHome = () => {
   const navigate = useNavigate()
@@ -12,14 +13,24 @@ const BlogHome = () => {
     })
   }
 
+  // নতুন পেজে নেভিগেট করার ফাংশন
+  const goToNewPage = () => {
+    navigate('/newpage')
+  }
+
   return (
     <>
       {/* Navbar */}
       <nav style={{ backgroundColor: '#333', color: 'white', padding: '10px 20px', display: 'flex', justifyContent: 'space-between' }}>
         <h2>🔥 FirebaseApp</h2>
-        <button onClick={handleLogout} style={{ backgroundColor: 'red', color: 'white', border: 'none', padding: '8px 12px', cursor: 'pointer' }}>
-          Logout
-        </button>
+        <div>
+          <button onClick={goToNewPage} style={{ marginRight: '10px', backgroundColor: 'blue', color: 'white', border: 'none', padding: '8px 12px', cursor: 'pointer' }}>
+            Go to New Page
+          </button>
+          <button onClick={handleLogout} style={{ backgroundColor: 'red', color: 'white', border: 'none', padding: '8px 12px', cursor: 'pointer' }}>
+            Logout
+          </button>
+        </div>
       </nav>
 
       {/* Hero Section */}

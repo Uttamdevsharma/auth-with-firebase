@@ -85,7 +85,7 @@ const firebaseConfig = {
 
 
       {/* include validation with required or other standard HTML validation rules */}
-      <input type='email' style={{
+      <input className="p-2.5 border border-white-500 w-[250px] m-2.5" type='email' style={{
         padding: '10px',
         width: '250px',
         margin: '10px'
@@ -99,7 +99,7 @@ const firebaseConfig = {
        <br/>
 
 
-      <input  type = "password" style={{
+      <input className="p-2.5 border border-white-500 w-[250px] m-2.5"  type = "password" style={{
         padding: '10px',
         width: '250px',
         margin: '10px'
