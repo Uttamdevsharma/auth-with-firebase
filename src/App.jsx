@@ -54,12 +54,72 @@ const firebaseConfig = {
 
   }
 
- 
 
   return (
     <>
-      <h2>SignUp with Firebase {user.email}</h2>
+    <div style={{
+      margin:'10px'
+    }}
+    >
+       <h2>Welcome To Firebase Authentication {user.email}</h2>
       <form style={{
+        border: '2px solid white'
+      }} onSubmit={handleSubmit(onSubmit)}>
+
+       <h3>SignUp with email and password</h3>
+
+
+      {/* include validation with required or other standard HTML validation rules */}
+      <input type='email' style={{
+        padding: '10px',
+        width: '250px',
+        margin: '10px'
+      }    } {...register("email", { required: true })} placeholder='Email' />
+      <br/>
+      {errors.email && <span  style={{
+        color: 'red',
+        fontSize: '14px'
+      }}>This field is required</span>}
+
+       <br/>
+
+
+      <input  type = "password" style={{
+        padding: '10px',
+        width: '250px',
+        margin: '10px'
+      }   } {...register("password", { required: true })} placeholder='Password' />
+      <br/>
+      
+      {errors.password && <span style={{ 
+        color: 'red',
+        fontSize: '14px'
+      }}>This field is required</span>}
+
+   <br/>
+
+   <div>
+   {firebaseError}
+   </div>
+
+   <br/>
+
+
+      <input type="submit" style={{
+        backgroundColor:'green',
+        padding:'10px',
+        width:'200px',
+        marginBottom:'30px'
+      }} />
+    </form>
+
+    </div>
+     
+
+    <div className="" style={{
+      margin:'10px'
+    }}>
+       <form style={{
         border: '2px solid white'
       }} onSubmit={handleSubmit(onSubmit)}>
 
@@ -109,6 +169,8 @@ const firebaseConfig = {
         marginBottom:'30px'
       }} />
     </form>
+
+    </div>
 
 
    
