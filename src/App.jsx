@@ -1,9 +1,27 @@
 import './App.css'
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from 'react';
 import { useForm } from "react-hook-form"
 
-// Firebase Config
+function App() {
+
+  const [user,setUser ] = useState({})
+  const [firebaseError , setFirebaseError] = useState("")
+
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
+  const onSubmit = (formData) => signUpWithEmailPassword(formData);
+
+  
+
+
+  // Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyCJzcl4bQimJoxxSKTEHOyguPYn5bqDoxc",
   authDomain: "fir-auth-practice-26f99.firebaseapp.com",
@@ -14,48 +32,46 @@ const firebaseConfig = {
   measurementId: "G-REESPV1SWP"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
-function App() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm()
+  const signUpWithEmailPassword = (data) => {
+    const email = data.email
+    const password = data.password
 
-  const onSubmit = (data) => {
-    const { email, password } = data;
+  createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    setUser(user)
+    // ...
+  })
+  .catch((error) => {
+    const errorMessage = error.message;
+    setFirebaseError(errorMessage)
+    // ..
+  });
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log("Logged in user:", user);
-      })
-      .catch((error) => {
-        console.error("Error:", error.message);
-      });
   }
+
+ 
 
   return (
     <>
-      <h2>Login with Firebase</h2>
-      <form 
-      
-      
-      style={{
+      <h2>SignUp with Firebase {user.email}</h2>
+      <form style={{
         border: '2px solid white'
       }} onSubmit={handleSubmit(onSubmit)}>
+
        <h3>Login with email and password</h3>
+
+
       {/* include validation with required or other standard HTML validation rules */}
-      <input style={{
+      <input type='email' style={{
         padding: '10px',
         width: '250px',
         margin: '10px'
-      }
-     
-      } {...register("email", { required: true })} placeholder='Email' />
+      }    } {...register("email", { required: true })} placeholder='Email' />
       <br/>
       {errors.email && <span  style={{
         color: 'red',
@@ -63,21 +79,28 @@ function App() {
       }}>This field is required</span>}
 
        <br/>
-      <input  style={{
+
+
+      <input  type = "password" style={{
         padding: '10px',
         width: '250px',
         margin: '10px'
-      }
-     
-      } {...register("password", { required: true })} placeholder='Password' />
+      }   } {...register("password", { required: true })} placeholder='Password' />
       <br/>
       
-      {errors.password && <span style={{
-        
+      {errors.password && <span style={{ 
         color: 'red',
         fontSize: '14px'
       }}>This field is required</span>}
+
    <br/>
+
+   <div>
+   {firebaseError}
+   </div>
+
+   <br/>
+
 
       <input type="submit" style={{
         backgroundColor:'green',
@@ -86,6 +109,9 @@ function App() {
         marginBottom:'30px'
       }} />
     </form>
+
+
+   
     </>
   )
 }
