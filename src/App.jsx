@@ -73,6 +73,7 @@ function App() {
       <br/>
       
       {errors.password && <span style={{
+        
         color: 'red',
         fontSize: '14px'
       }}>This field is required</span>}
