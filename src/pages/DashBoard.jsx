@@ -42,9 +42,10 @@ const DashBoard = () => {
                 dolor cumque. Necessitatibus molestiae soluta rerum vel facilis illo perspiciatis voluptas iure, fuga nemo. Sunt, velit. Enim eos ratione perspiciatis corrupti exercitationem? Voluptatibus dolorem tenetur odio ad distinctio quo nostrum libero fugit obcaecati cupiditate fuga deserunt, 
                 alias, laborum velit quia voluptas.</p>
 
-                <div>
-                    <div>Box1</div>
-                    <div>Box2</div>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    
+                    <div class="bg-white p-4 shadow rounded">Box1</div>
+                    <div class="bg-white p-4 shadow rounded">Box2</div>
                 </div>
         </main>
     </div>
